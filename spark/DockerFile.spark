@@ -1,0 +1,18 @@
+FROM jupyter/all-spark-notebook:latest
+
+USER root
+
+# Install Python dependencies
+RUN pip install --no-cache-dir pymongo[srv] pyspark findspark pytest dotenv
+
+# Copy your application code
+COPY src/ /home/jovyan/work/src/
+
+# Create checkpoint directory
+RUN mkdir -p /home/jovyan/work/checkpoints \
+    && chown -R jovyan:users /home/jovyan/work/checkpoints
+
+WORKDIR /home/jovyan/work
+
+# Start JupyterLab without token
+CMD ["start-notebook.sh", "--NotebookApp.allow_origin='*'", "--NotebookApp.ip=0.0.0.0", "--NotebookApp.port=8888"]
