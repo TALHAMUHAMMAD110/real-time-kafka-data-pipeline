@@ -149,7 +149,7 @@ http://localhost:3000
 Once connected, the dashboard will show your real-time aggregated data from Spark Streaming on the below link
 
 ```
-http://localhost:3000/d/adxsnwq/lotto24?orgId=1&from=2025-10-28T08:29:00.000Z&to=2025-10-28T09:37:00.000Z&timezone=browser&refresh=1m
+http://localhost:3000/d/adw6ckw/production-dashboard?orgId=1&from=now-2h&to=now&timezone=browser&refresh=5s
 
 ```
 
