@@ -116,7 +116,7 @@ After logging into pgAdmin, register a new server connection to your PostgreSQL 
 3. Right-click on `lottery_aggregates` and select **View/Edit Data → All Rows**
    - This executes a query to view the real-time aggregated output saved by your Spark Streaming job.
 
-![PostgresDB](./postgres_storage.png "PostgresDB")
+![PostgresDB](./postgres_storage_image.png "PostgresDB")
 
 # Grafana Dashboard Access Guide
 
@@ -153,4 +153,4 @@ http://localhost:3000/d/adxsnwq/lotto24?orgId=1&from=2025-10-28T08:29:00.000Z&to
 
 ```
 
-![Grafana Dashboard](./grafana_dashboard.png "Grafana Dashboard")
+![Grafana Dashboard](./grafana_dashboard_image.png "Grafana Dashboard")
