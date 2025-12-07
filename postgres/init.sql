@@ -1,8 +1,7 @@
-CREATE TABLE IF NOT EXISTS lottery_aggregates (
+CREATE TABLE IF NOT EXISTS sensor_data (
     id SERIAL PRIMARY KEY,
-    lottery_name VARCHAR(100) NOT NULL,
-    event_type VARCHAR(50) NOT NULL,
-    window_start TIMESTAMP NOT NULL,
-    window_end TIMESTAMP NOT NULL,
-    event_count INTEGER NOT NULL
+    sensorId VARCHAR(50) NOT NULL,
+    windowStart TIMESTAMP NOT NULL,
+    windowEnd TIMESTAMP NOT NULL,
+    averageValue FLOAT(10) NOT NULL
 );

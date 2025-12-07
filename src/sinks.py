@@ -15,8 +15,8 @@ def write_to_postgres(batch_df, _):
         # Convert epoch millis to proper timestamps
         batch_df_to_pg = (
             batch_df
-            .withColumn("window_start", from_unixtime(col("window_start") / 1000).cast("timestamp"))
-            .withColumn("window_end", from_unixtime(col("window_end") / 1000).cast("timestamp"))
+            .withColumn("windowStart", from_unixtime(col("windowStart") / 1000).cast("timestamp"))
+            .withColumn("windowEnd", from_unixtime(col("windowEnd") / 1000).cast("timestamp"))
         )
 
         record_count = batch_df_to_pg.count()

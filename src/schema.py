@@ -1,6 +1,6 @@
-from pyspark.sql.types import StructType, StringType, LongType
+from pyspark.sql.types import StructType, StringType, DoubleType, LongType
 
-LOTTERY_SCHEMA = StructType() \
-    .add("lottery_name", StringType()) \
-    .add("event_type", StringType()) \
+SENSOR_SCHEMA = StructType() \
+    .add("sensorId", StringType()) \
+    .add("value", DoubleType()) \
     .add("timestamp", LongType())

@@ -11,9 +11,8 @@ def main():
     print(f"BOOTSTRAP_SERVERS: {bootstrap_servers}")
     topic_name = "user_events"
 
-    # List of possible event types and lotteries
-    lotteries = ["Lotto 6aus49", "Euro Jackpot", 'Keno']
-    event_types = ['clicked', 'fill_out_the_order', 'register','pay']
+    # List of possible sensors ids
+    sensors = ["sensor-12", "sensor-42", 'sensor-123', 'sensor-874']
 
     # Create the Kafka producer
     producer = KafkaProducer(
@@ -25,20 +24,20 @@ def main():
     logging.info("Press Ctrl+C to stop.")
 
     try:
-        while True:
-            # Pick a random lottery name
-            lottery_name = random.choice(lotteries)
+       while True:
+            # Pick a random sensor ID
+            sensor_id = random.choice(sensors)
 
-            # Generate a random event type
-            event_type = random.choice(event_types)
+            # Generate a random measurement value
+            value = round(random.uniform(10.0, 100.0), 2)
 
             # Current timestamp in milliseconds
             timestamp = int(time.time() * 1000)
 
             # Construct the event as a Python dictionary
             event = {
-                "lottery_name": lottery_name,
-                "event_type": event_type,
+                "sensorId": sensor_id,
+                "value": value,
                 "timestamp": timestamp
             }
 
@@ -48,10 +47,10 @@ def main():
 
             print(f"Sent event: {event}")
 
-            # Sleep for sometime (adjust to control message rate)
-            time.sleep(random.uniform(0.5, 2.0))
+            # Sleep for 1 second (adjust to control message rate)
+            time.sleep(1)
     except KeyboardInterrupt:
-        logging.error("\nStopping lottery data publisher.")
+        logging.error("\nStopping sensor data publisher.")
     finally:
         producer.close()
         logging.info("Kafka producer closed.")
