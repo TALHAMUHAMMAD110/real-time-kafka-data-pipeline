@@ -10,8 +10,8 @@ def spark():
         .appName("Test") \
         .getOrCreate()
 
-def test_lottery_schema_structure():
-    """Test LOTTERY_SCHEMA has correct structure"""
+def test_sensor_schema_structure():
+    """Test SENSOR_SCHEMA has correct structure"""
     assert len(SENSOR_SCHEMA.fields) == 3
     
     # Check field names and types
@@ -21,7 +21,7 @@ def test_lottery_schema_structure():
     field_types = [type(field.dataType) for field in SENSOR_SCHEMA.fields]
     assert field_types == [StringType, DoubleType, LongType]
 
-def test_lottery_schema_validates_data(spark):
+def test_sensor_schema_validates_data(spark):
     """Test that valid data matches the schema"""
     valid_data = [
         ("sensor1", 10.5, 1672531200000),

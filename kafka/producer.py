@@ -9,7 +9,7 @@ def main():
     # Kafka broker connection settings
     bootstrap_servers = os.getenv("BOOTSTRAP_SERVERS", "localhost:9092")
     print(f"BOOTSTRAP_SERVERS: {bootstrap_servers}")
-    topic_name = "user_events"
+    topic_name = "sensor_events"
 
     # List of possible sensors ids
     sensors = ["sensor-12", "sensor-42", 'sensor-123', 'sensor-874']
@@ -20,7 +20,7 @@ def main():
         value_serializer=lambda v: json.dumps(v).encode("utf-8")
     )
 
-    logging.info(f"Publishing lottery data to Kafka topic '{topic_name}'...")
+    logging.info(f"Publishing sensor data to Kafka topic '{topic_name}'...")
     logging.info("Press Ctrl+C to stop.")
 
     try:

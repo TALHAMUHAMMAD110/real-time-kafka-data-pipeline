@@ -1,6 +1,6 @@
-# Lottery Events Data Streaming Pipeline
+# Sensor Events Data Streaming Pipeline
 
-Real-time lottery data streaming pipeline using **PySpark Structured Streaming** , **Kafka**,**Postgres** and **Grafana**.
+Real-time Sensor data streaming pipeline using **PySpark Structured Streaming** , **Kafka**,**Postgres** and **Grafana**.
 
 ## Overview
 
@@ -8,10 +8,10 @@ This project ingests user events data from a Kafka topic, performs real-time agg
 
 **Features:**
 
-- Reads sensor data from Kafka topic: `user-events`
+- Reads sensor data from Kafka topic: `sensor-events`
 - Aggregates sensor readings in **1-minute windows**
-- Computes the **Event Count** for each lottery per event type
-- Writes aggregated results to PostgresDB: `lottery_db`
+- Computes the **Event Count** for each Sensor
+- Writes aggregated results to PostgresDB: `sensor_db`
 - Supports unit testing for transformations
 - Modular design with separate transformation and sink modules
 - On pipeline failure, an automatic email with the error will be sent. Configure credentials in the .env file
@@ -72,7 +72,7 @@ spark-submit --master local[*] --packages org.apache.spark:spark-sql-kafka-0-10_
 ### Kafka Output
 
 - Check the Kafka UI at http://localhost:8080/ui/docker-kafka-server/topic
-- user_events have the input data
+- sensor_events have the input data
   ![Kafka UI](./kafka_ui.png "Kafka Topics")
 
 # pgAdmin & PostgreSQL Setup Guide
@@ -93,13 +93,13 @@ After logging into pgAdmin, register a new server connection to your PostgreSQL 
 
 1. Right-click on **Servers** → **Create** → **Server...**
 2. **General Tab:**
-   - Give the server a descriptive name (e.g., `Lottery_Postgres_Server`).
+   - Give the server a descriptive name (e.g., `Sensor_Postgres_Server`).
 3. **Connection Tab:** Use the following configuration:
    - **Host Name/Address:** `postgres`
      > Note: If you are running pgAdmin on your host machine (not inside Docker), you may need to use `localhost` or your Docker host's IP instead of `postgres`.
    - **Port:** `5432`
-   - **Maintenance database:** `lottery_db`
-     > Or `postgres` if `lottery_db` hasn't been created yet by Spark.
+   - **Maintenance database:** `Sensor_db`
+     > Or `postgres` if `Sensor_db` hasn't been created yet by Spark.
    - **Username:** `admin`
    - **Password:** `admin`
 4. Click **Save** to establish the server connection.
@@ -109,11 +109,11 @@ After logging into pgAdmin, register a new server connection to your PostgreSQL 
 ## Step 3: View the Aggregated Data
 
 1. In the pgAdmin browser tree:
-   - Expand the server you just created (e.g., `Lottery_Postgres_Server`).
-   - Expand **Databases → lottery_db**.
+   - Expand the server you just created (e.g., `Sensor_Postgres_Server`).
+   - Expand **Databases → Sensor_db**.
    - Expand **Schemas → public → Tables**.
-2. Locate the table named `lottery_aggregates`.
-3. Right-click on `lottery_aggregates` and select **View/Edit Data → All Rows**
+2. Locate the table named `Sensor_aggregates`.
+3. Right-click on `Sensor_aggregates` and select **View/Edit Data → All Rows**
    - This executes a query to view the real-time aggregated output saved by your Spark Streaming job.
 
 ![PostgresDB](./postgres_storage_image.png "PostgresDB")
@@ -140,7 +140,7 @@ http://localhost:3000
 2. Enter the following connection details:
    - **Host:** `postgres:5432`
      > Use `localhost:5432` if connecting from your host machine.
-   - **Database:** `lottery_db`
+   - **Database:** `Sensor_db`
    - **User:** `admin`
    - **Password:** `admin`
    - **SSL Mode:** `disable` (for local development)

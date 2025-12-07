@@ -11,7 +11,7 @@ def start_streaming_job():
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
     # Initialize Spark
-    spark = SparkSession.builder.appName("RealTimeDataPipeLineForLottery").getOrCreate()
+    spark = SparkSession.builder.appName("RealTimeDataPipeLineForSensorData").getOrCreate()
     spark.sparkContext.setLogLevel("INFO")
 
     # Transform stream

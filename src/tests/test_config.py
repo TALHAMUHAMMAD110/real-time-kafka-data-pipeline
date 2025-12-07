@@ -12,5 +12,5 @@ def test_config_values():
     assert hasattr(config, 'RECEIVER_EMAIL')
     
     # Test specific values if they're expected to be certain values
-    assert config.KAFKA_INPUT_TOPIC == "user_events"
-    assert config.POSTGRES_TABLE == "lottery_aggregates"
+    assert config.KAFKA_INPUT_TOPIC == "sensor_events"
+    assert config.POSTGRES_TABLE == "sensor_table"
